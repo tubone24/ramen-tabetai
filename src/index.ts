@@ -1,4 +1,5 @@
 import { GetScriptPropertiesService, Property } from './getScriptPropertiesService';
+import { createCarousel } from "./carouselService";
 
 declare var global: any;
 
@@ -28,7 +29,7 @@ global.doPost = (e: any) => {
   const longitude = message.longitude;
   const address = message.address;
   const rest = getRestaurant(GRUNAVI_TOKEN, latitude, longitude).rest;
-  const imageCarousel = createImageCarousel(rest);
+  const imageCarousel = createCarousel(rest);
   sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, rest.length);
 };
 
