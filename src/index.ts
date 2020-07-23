@@ -1,5 +1,5 @@
 import { GetScriptPropertiesService, Property } from './getScriptPropertiesService';
-import { createCarousel } from "./carouselService";
+import { createCarousel } from './carouselService';
 
 declare var global: any;
 

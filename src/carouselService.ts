@@ -44,30 +44,44 @@ export const createCarousel = (rest: Rest[]) => {
     }
     const title = item.name.substr(0, 40);
     const label = item.name.substr(0, 12);
-    const text = item.pr.pr_long.substr(0, 60);
+    const text = (
+      'Tel: ' +
+      item.tel +
+      '\n' +
+      'Address: ' +
+      item.address +
+      '\n' +
+      item.pr.pr_long
+    ).substr(0, 60);
     columns.push({
-        thumbnailImageUrl: thumbnailImageUrl,
-        title: title,
-        text: text,
-        defaultAction: {
+      thumbnailImageUrl: thumbnailImageUrl,
+      imageBackgroundColor: '#ffb5b5',
+      title: title,
+      text: text,
+      defaultAction: {
+        type: 'uri',
+        label: label,
+        uri: item.url_mobile,
+        altUri: {
+          desktop: item.url
+        }
+      },
+      actions: [
+        {
           type: 'uri',
-          label: label,
-          uri: item.url_mobile
-        },
-        action: [
-          {
-            type: 'uri',
-            label: 'Webページへ',
-            uri: item.url_mobile
-          },
-          {
-            type:'message',
-            label:'電話したい',
-            text: item.tel
+          label: 'Webページへ',
+          uri: item.url_mobile,
+          altUri: {
+            desktop: item.url
           }
-        ],
-      }
-    );
+        },
+        {
+          type: 'message',
+          label: '電話したい',
+          text: item.tel
+        }
+      ]
+    });
     if ((index + 1) % 10 === 0) {
       const template = {
         type: 'template',
@@ -91,8 +105,10 @@ export interface Rest {
   };
   name: string;
   url_mobile: string;
-  tel: string
+  url: string;
+  tel: string;
+  address: string;
   pr: {
-    pr_long: string
-  }
+    pr_long: string;
+  };
 }
