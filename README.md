@@ -3,6 +3,7 @@
 ![logo](docs/images/logo.png)
 
 [![Node CI](https://github.com/tubone24/ramen-tabetai/workflows/Node%20CI/badge.svg)](https://github.com/tubone24/ramen-tabetai/actions)
+[![Coverage Status](https://coveralls.io/repos/github/tubone24/ramen-tabetai/badge.svg?branch=master)](https://coveralls.io/github/tubone24/ramen-tabetai?branch=master)
 [![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
 [![license](https://img.shields.io/github/license/tubone24/ramen-tabetai.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
@@ -29,6 +30,14 @@ I Like a Ramen very much.
 Do you want to check Ramen shop near by you easily if you going out?
 
 This `LINEBOT` is the solution that you check Ramen shop. 
+
+### Try me!
+
+You can follow ramen-tabetai BOT!
+
+<a href="https://lin.ee/Y9mUrIN"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+
+![img](docs/images/qr.png)
 
 ## Install
 
