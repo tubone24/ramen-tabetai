@@ -2,6 +2,7 @@
 
 ![logo](docs/images/logo.png)
 
+[![Node CI](https://github.com/tubone24/ramen-tabetai/workflows/Node%20CI/badge.svg)](https://github.com/tubone24/ramen-tabetai/actions)
 [![clasp](https://img.shields.io/badge/built%20with-clasp-4285f4.svg)](https://github.com/google/clasp)
 [![license](https://img.shields.io/github/license/tubone24/ramen-tabetai.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
