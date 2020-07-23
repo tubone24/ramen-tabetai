@@ -1,4 +1,6 @@
-export const createImageCarousel = (rest: Rest[]) => {
+import { Rest } from './grunaviService';
+
+export const createImageCarousel = (rest: Rest[]): ImageCarousel[] => {
   const templates = [];
   let columns = [];
   rest.forEach((item, index) => {
@@ -33,7 +35,7 @@ export const createImageCarousel = (rest: Rest[]) => {
   return templates;
 };
 
-export const createCarousel = (rest: Rest[]) => {
+export const createCarousel = (rest: Rest[]): Carousel[] => {
   const templates = [];
   let columns = [];
   rest.forEach((item, index) => {
@@ -99,16 +101,55 @@ export const createCarousel = (rest: Rest[]) => {
   return templates;
 };
 
-export interface Rest {
-  image_url: {
-    shop_image1: string;
+export interface ImageCarousel {
+  type: 'template';
+  altText: string;
+  template: {
+    type: 'image_carousel';
+    columns: ImageCarouselColumn[];
   };
-  name: string;
-  url_mobile: string;
-  url: string;
-  tel: string;
-  address: string;
-  pr: {
-    pr_long: string;
+}
+
+export interface ImageCarouselColumn {
+  imageUrl: string;
+  action: {
+    type: 'uri' | 'message' | 'postback';
+    label: string;
+    uri: string;
   };
+}
+
+export interface Carousel {
+  type: 'template';
+  altText: string;
+  template: {
+    type: 'carousel';
+    columns: CarouselColumn[];
+  };
+}
+
+export interface CarouselColumn {
+  thumbnailImageUrl: string;
+  imageBackgroundColor: string;
+  title: string;
+  text: string;
+  defaultAction: {
+    type: string;
+    label: string;
+    uri: string;
+    altUri: {
+      desktop: string;
+    };
+    actions: CarouselAction[];
+  };
+}
+
+export interface CarouselAction {
+  type: 'uri' | 'message';
+  label: string;
+  uri?: string;
+  altUri?: {
+    desktop: string;
+  };
+  text?: string;
 }
