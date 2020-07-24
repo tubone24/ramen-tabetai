@@ -5,12 +5,17 @@ export const getRestaurant = (
 ): Rest[] => {
   const getRestaurantOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
     method: 'get',
-    contentType: 'application/json'
+    contentType: 'application/json',
+    muteHttpExceptions: true,
   };
-  const json = UrlFetchApp.fetch(
+  const resp = UrlFetchApp.fetch(
     `https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=${grunaviToken}&latitude=${latitude}&longitude=${longitude}&hit_per_page=100&category_s=RSFST08008,RSFST08009,RSFST08012,RSFST08013`,
     getRestaurantOptions
-  ).getContentText();
+  );
+  if (resp.getResponseCode() !== 200) {
+    return [];
+  }
+  const json = resp.getContentText();
   console.log(json);
   return JSON.parse(json).rest;
 };

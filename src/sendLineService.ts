@@ -58,3 +58,24 @@ export const sendLineReplyMessage = (lineBearer: string, replyToken: string): vo
 
   UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
 };
+
+export const sendLineReplyNoShopMessage = (lineBearer: string, replyToken: string): void => {
+  const msg = {
+    type: 'text',
+    text: 'ラーメン屋、一軒も見つからなかった...'
+  };
+  const respData = {
+    replyToken: replyToken,
+    messages: [msg]
+  };
+  const userRespOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+    method: 'post',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + lineBearer
+    },
+    payload: JSON.stringify(respData)
+  };
+
+  UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
+};
