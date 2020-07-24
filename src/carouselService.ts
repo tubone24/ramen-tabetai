@@ -98,6 +98,19 @@ export const createCarousel = (rest: Rest[]): Carousel[] => {
       columns = [];
     }
   });
+  if (templates.length === 0) {
+    //Bug: https://github.com/tubone24/ramen-tabetai/issues/4
+    const template = {
+      type: 'template',
+      altText: 'ramen',
+      template: {
+        type: 'carousel',
+        columns: []
+      }
+    };
+    template.template.columns = columns;
+    templates.push(template);
+  }
   return templates;
 };
 
