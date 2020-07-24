@@ -32,6 +32,18 @@ export const createImageCarousel = (rest: Rest[]): ImageCarousel[] => {
       columns = [];
     }
   });
+  if (columns.length !== 0) {
+    const template = {
+      type: 'template',
+      altText: 'ramen',
+      template: {
+        type: 'image_carousel',
+        columns: []
+      }
+    };
+    template.template.columns = columns;
+    templates.push(template);
+  }
   return templates;
 };
 
