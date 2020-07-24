@@ -6,6 +6,7 @@ import {
   sendLineReplyRamen,
   sendLineReplyNoShopMessage
 } from './sendLineService';
+import { checkTelephoneNumber } from "./checkTelephoneService";
 
 declare var global: any;
 
@@ -26,6 +27,13 @@ global.doPost = (e: any) => {
   }
   const message = events[0].message;
   if (message.type !== 'location') {
+    if (message.type === 'text') {
+      if (checkTelephoneNumber(message.text)) {
+        return ContentService.createTextOutput(JSON.stringify({ status: 'telephone' })).setMimeType(
+          ContentService.MimeType.JSON
+        );
+      }
+    }
     sendLineReplyMessage(LINE_BEARER, replyToken);
     return ContentService.createTextOutput(JSON.stringify({ status: 'not location' })).setMimeType(
       ContentService.MimeType.JSON
