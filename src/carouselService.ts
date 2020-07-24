@@ -153,8 +153,8 @@ export interface CarouselColumn {
     altUri: {
       desktop: string;
     };
-    actions: CarouselAction[];
   };
+  actions: CarouselAction[];
 }
 
 export interface CarouselAction {
