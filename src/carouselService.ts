@@ -98,7 +98,7 @@ export const createCarousel = (rest: Rest[]): Carousel[] => {
       columns = [];
     }
   });
-  if (templates.length === 0) {
+  if (columns.length !== 0) {
     //Bug: https://github.com/tubone24/ramen-tabetai/issues/4
     const template = {
       type: 'template',
