@@ -1,7 +1,11 @@
 import { GetScriptPropertiesService, Property } from './getScriptPropertiesService';
 import { createCarousel } from './carouselService';
 import { getRestaurant } from './grunaviService';
-import { sendLineReplyMessage, sendLineReplyRamen, sendLineReplyNoShopMessage } from './sendLineService';
+import {
+  sendLineReplyMessage,
+  sendLineReplyRamen,
+  sendLineReplyNoShopMessage
+} from './sendLineService';
 
 declare var global: any;
 
@@ -32,10 +36,10 @@ global.doPost = (e: any) => {
   const address = message.address;
   const rest = getRestaurant(GRUNAVI_TOKEN, latitude, longitude);
   if (rest.length === 0) {
-    sendLineReplyNoShopMessage(LINE_BEARER, replyToken)
-    return ContentService.createTextOutput(JSON.stringify({ status: 'not found shop' })).setMimeType(
-      ContentService.MimeType.JSON
-    );
+    sendLineReplyNoShopMessage(LINE_BEARER, replyToken);
+    return ContentService.createTextOutput(
+      JSON.stringify({ status: 'not found shop' })
+    ).setMimeType(ContentService.MimeType.JSON);
   }
   const imageCarousel = createCarousel(rest);
   sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, rest.length);

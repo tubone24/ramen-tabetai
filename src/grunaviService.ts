@@ -6,7 +6,7 @@ export const getRestaurant = (
   const getRestaurantOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
     method: 'get',
     contentType: 'application/json',
-    muteHttpExceptions: true,
+    muteHttpExceptions: true
   };
   const resp = UrlFetchApp.fetch(
     `https://api.gnavi.co.jp/RestSearchAPI/v3/?keyid=${grunaviToken}&latitude=${latitude}&longitude=${longitude}&hit_per_page=100&category_s=RSFST08008,RSFST08009,RSFST08012,RSFST08013`,
