@@ -6,6 +6,7 @@ import {
   sendLineReplyRamen,
   sendLineReplyNoShopMessage,
   getUserInfo,
+  sendLineReplyLifelogLink,
 } from './LineService';
 import { checkTelephoneNumber } from './checkTelephoneService';
 import { getHotpepperRestaurant } from './hotpepperGourmetService';
@@ -30,8 +31,15 @@ global.doPost = (e: any) => {
     );
   }
   const message = events[0].message;
+  const userId = events[0].source.userId;
   if (message.type !== 'location') {
     if (message.type === 'text') {
+      if (message.text === 'ライフログがみたい') {
+        sendLineReplyLifelogLink(LINE_BEARER, replyToken, userId);
+        return ContentService.createTextOutput(JSON.stringify({ status: 'view lifelog' })).setMimeType(
+          ContentService.MimeType.JSON
+        );
+      }
       if (checkTelephoneNumber(message.text)) {
         return ContentService.createTextOutput(JSON.stringify({ status: 'telephone' })).setMimeType(
           ContentService.MimeType.JSON
@@ -46,7 +54,6 @@ global.doPost = (e: any) => {
   const latitude = message.latitude;
   const longitude = message.longitude;
   const address = message.address;
-  const userId = events[0].source.userId;
   const userInfo = getUserInfo(LINE_BEARER, userId);
   const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
   const hotpepperRest = getHotpepperRestaurant(HOTPEPPER_TOKEN, latitude, longitude);

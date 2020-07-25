@@ -38,6 +38,50 @@ export const sendLineReplyRamen = (
   UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
 };
 
+export const sendLineReplyLifelogLink = (
+  lineBearer: string,
+  replyToken: string,
+  userId: string,
+): void => {
+  const template = {
+    type: 'template',
+    altText: 'lifelog',
+    template: {
+      type: 'confirm',
+      "text": "ライフログを開く？",
+      "actions": [
+        {
+          "type":"uri",
+          "label":"開く",
+          "uri": `https://ramen-tabeteru.web.app/view/?uid=${userId}`,
+          "altUri": {
+            "desktop" : `https://ramen-tabeteru.web.app/view/?uid=${userId}`
+          }
+        },
+        {
+          "type": "message",
+          "label": "いいえ",
+          "text": "いいえ"
+        }
+      ]
+    }
+  };
+  const respData = {
+    replyToken: replyToken,
+    messages: [template]
+  };
+  const userRespOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+    method: 'post',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + lineBearer
+    },
+    payload: JSON.stringify(respData)
+  };
+
+  UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
+};
+
 export const sendLineReplyMessage = (lineBearer: string, replyToken: string): void => {
   const msg = {
     type: 'text',
@@ -49,6 +93,15 @@ export const sendLineReplyMessage = (lineBearer: string, replyToken: string): vo
           action: {
             type: 'location',
             label: '位置情報を送る'
+          }
+        },
+        {
+          type: 'action',
+          imageUrl: 'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/heart_blur.png',
+          action: {
+            "type":"message",
+            "label":"ライフログを見る",
+            "text":"ライフログがみたい"
           }
         }
       ]
