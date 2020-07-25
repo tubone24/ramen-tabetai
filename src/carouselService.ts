@@ -47,7 +47,7 @@ export const createImageCarousel = (rest: GrunaviRest[]): ImageCarousel[] => {
   return templates;
 };
 
-export const createCarousel = (rest: GrunaviRest[]): Carousel[] => {
+export const createCarousel = (rest: GrunaviRest[], userId: string): Carousel[] => {
   const templates = [];
   let columns = [];
   rest.forEach((item, index) => {
@@ -93,6 +93,14 @@ export const createCarousel = (rest: GrunaviRest[]): Carousel[] => {
           type: 'message',
           label: '電話したい',
           text: item.tel
+        },
+        {
+          type: 'uri',
+          label: 'ラーメン食べた！',
+          uri: encodeURI(`https://ramen-tabeteru.web.app/add/?userId=${userId}&shopId=${item.id}&shopName=${item.name}&lat=${item.latitude}&lon=${item.longitude}`),
+          altUri: {
+            desktop: encodeURI(`https://ramen-tabeteru.web.app/add/?userId=${userId}&shopId=${item.id}&shopName=${item.name}&lat=${item.latitude}&lon=${item.longitude}`),
+          }
         }
       ]
     });

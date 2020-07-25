@@ -24,6 +24,9 @@ export interface HotpepperRest {
   access: string;
   address: string;
   name: string;
+  id: string;
+  lat: string;
+  lng: string;
   photo: {
     mobile: {
       l: string;

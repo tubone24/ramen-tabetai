@@ -24,6 +24,9 @@ export interface GrunaviRest {
   image_url: {
     shop_image1: string;
   };
+  id: string;
+  latitude: string;
+  longitude: string;
   name: string;
   url_mobile: string;
   url: string;

@@ -21,6 +21,9 @@ export const mergeRest = (
         image_url: {
           shop_image1: hotpepperEntry.photo.pc.l
         },
+        id: hotpepperEntry.id,
+        latitude: hotpepperEntry.lat,
+        longitude: hotpepperEntry.lng,
         address: hotpepperEntry.address,
         url: hotpepperEntry.urls.pc,
         url_mobile: hotpepperEntry.urls.pc,
