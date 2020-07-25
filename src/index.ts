@@ -1,12 +1,14 @@
 import { GetScriptPropertiesService, Property } from './getScriptPropertiesService';
 import { createCarousel } from './carouselService';
-import { getRestaurant } from './grunaviService';
+import { getGrunaviRestaurant } from './grunaviService';
 import {
   sendLineReplyMessage,
   sendLineReplyRamen,
   sendLineReplyNoShopMessage
 } from './sendLineService';
 import { checkTelephoneNumber } from "./checkTelephoneService";
+import { getHotpepperRestaurant } from "./hotpepperGourmetService";
+import {mergeRest} from "./mergeRest";
 
 declare var global: any;
 
@@ -14,6 +16,7 @@ global.doPost = (e: any) => {
   const config: Property = GetScriptPropertiesService.getProperties();
   const LINE_BEARER = config.lineBearer;
   const GRUNAVI_TOKEN = config.grunaviToken;
+  const HOTPEPPER_TOKEN = config.hotpepperToken;
   const params = JSON.parse(e.postData.getDataAsString());
   console.log(JSON.stringify(params));
   const events = params.events;
@@ -42,15 +45,17 @@ global.doPost = (e: any) => {
   const latitude = message.latitude;
   const longitude = message.longitude;
   const address = message.address;
-  const rest = getRestaurant(GRUNAVI_TOKEN, latitude, longitude);
-  if (rest.length === 0) {
+  const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
+  const hotpepperRest = getHotpepperRestaurant(HOTPEPPER_TOKEN, latitude, longitude);
+  if (grunaviRest.length === 0) {
     sendLineReplyNoShopMessage(LINE_BEARER, replyToken);
     return ContentService.createTextOutput(
       JSON.stringify({ status: 'not found shop' })
     ).setMimeType(ContentService.MimeType.JSON);
   }
-  const imageCarousel = createCarousel(rest);
-  sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, rest.length);
+  const replacedGrunaviRest = mergeRest(grunaviRest, hotpepperRest);
+  const imageCarousel = createCarousel(replacedGrunaviRest);
+  sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, grunaviRest.length);
   return ContentService.createTextOutput(JSON.stringify({ status: 'ok' })).setMimeType(
     ContentService.MimeType.JSON
   );

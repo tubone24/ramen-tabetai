@@ -1,8 +1,8 @@
-export const getRestaurant = (
+export const getGrunaviRestaurant = (
   grunaviToken: string,
   latitude: string,
   longitude: string
-): Rest[] => {
+): GrunaviRest[] => {
   const getRestaurantOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
     method: 'get',
     contentType: 'application/json',
@@ -20,7 +20,7 @@ export const getRestaurant = (
   return JSON.parse(json).rest;
 };
 
-export interface Rest {
+export interface GrunaviRest {
   image_url: {
     shop_image1: string;
   };

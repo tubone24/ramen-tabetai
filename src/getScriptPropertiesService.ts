@@ -4,9 +4,11 @@ export class GetScriptPropertiesService {
     const grunaviToken: string = PropertiesService.getScriptProperties().getProperty(
       'GRUNAVI_TOKEN'
     );
+    const hotpepperToken: string = PropertiesService.getScriptProperties().getProperty('HOTPEPPER_TOKEN');
     return {
       lineBearer: lineBearer,
-      grunaviToken: grunaviToken
+      grunaviToken: grunaviToken,
+      hotpepperToken: hotpepperToken,
     };
   }
 }
@@ -14,4 +16,5 @@ export class GetScriptPropertiesService {
 export interface Property {
   lineBearer: string;
   grunaviToken: string;
+  hotpepperToken: string;
 }

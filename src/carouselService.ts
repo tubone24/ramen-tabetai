@@ -1,6 +1,6 @@
-import { Rest } from './grunaviService';
+import { GrunaviRest } from './grunaviService';
 
-export const createImageCarousel = (rest: Rest[]): ImageCarousel[] => {
+export const createImageCarousel = (rest: GrunaviRest[]): ImageCarousel[] => {
   const templates = [];
   let columns = [];
   rest.forEach((item, index) => {
@@ -47,7 +47,7 @@ export const createImageCarousel = (rest: Rest[]): ImageCarousel[] => {
   return templates;
 };
 
-export const createCarousel = (rest: Rest[]): Carousel[] => {
+export const createCarousel = (rest: GrunaviRest[]): Carousel[] => {
   const templates = [];
   let columns = [];
   rest.forEach((item, index) => {
