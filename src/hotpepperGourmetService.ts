@@ -17,7 +17,7 @@ export const getHotpepperRestaurant = (
   }
   const json = resp.getContentText();
   console.log(json);
-  return JSON.parse(json).shop;
+  return JSON.parse(json).results.shop;
 };
 
 export interface HotpepperRest {
