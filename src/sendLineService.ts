@@ -41,7 +41,18 @@ export const sendLineReplyRamen = (
 export const sendLineReplyMessage = (lineBearer: string, replyToken: string): void => {
   const msg = {
     type: 'text',
-    text: 'そんなことよりラーメン食え！'
+    text: '位置情報を送って近くのラーメン屋を見つけよう！',
+    quickReply: {
+      items: [
+        {
+          "type": "action",
+          "action": {
+            "type": "location",
+            "label": "位置情報を送る"
+          },
+        }
+      ]
+    }
   };
   const respData = {
     replyToken: replyToken,
