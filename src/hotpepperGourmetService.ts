@@ -9,7 +9,7 @@ export const getHotpepperRestaurant = (
     muteHttpExceptions: true
   };
   const resp = UrlFetchApp.fetch(
-    `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${hotpepperToken}&lat=${latitude}&lng=${longitude}&range=4&order=4&format=json&genre=G013`,
+    `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=${hotpepperToken}&lat=${latitude}&lng=${longitude}&range=2&order=4&format=json&genre=G013`,
     getRestaurantOptions
   );
   if (resp.getResponseCode() !== 200) {

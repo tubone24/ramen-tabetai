@@ -6,9 +6,6 @@ export const mergeRest = (
   hotpepperRest: HotpepperRest[]
 ): GrunaviRest[] => {
   // ぐるなびAPIの結果の画像がしょぼいから画像をHotpepperAPIで置き換えて、かつぐるなびAPIの検索結果にないものを加える
-  // const addNameList = grunaviRest.map(item => {
-  //   return item.name;
-  // });
   for (const hotpepperEntry of hotpepperRest) {
     let include = false;
     grunaviRest.forEach((grunaviItem) => {
