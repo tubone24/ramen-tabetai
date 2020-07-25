@@ -9,34 +9,30 @@ export const mergeRest = (
   const addNameList = grunaviRest.map(item => {
     return item.name;
   });
-  hotpepperRest.forEach( (hotpepperItem) => {
+  for (const hotpepperEntry of hotpepperRest) {
     let include = false;
-    grunaviRest.forEach((grunaviItem, index) => {
-      if (grunaviItem.name === hotpepperItem.name) {
-        grunaviItem.image_url.shop_image1 = hotpepperItem.photo.pc.l;
+    grunaviRest.forEach((grunaviItem) => {
+      if (grunaviItem.name === hotpepperEntry.name) {
+        grunaviItem.image_url.shop_image1 = hotpepperEntry.photo.pc.l;
         include = true;
       }
-      if (
-        index === grunaviRest.length - 1 &&
-        !include &&
-        !addNameList.includes(hotpepperItem.name)
-      ) {
-        include = false;
-        grunaviRest.push({
-          name: hotpepperItem.name,
-          image_url: {
-            shop_image1: hotpepperItem.photo.pc.l
-          },
-          address: hotpepperItem.address,
-          url: hotpepperItem.urls.pc,
-          url_mobile: hotpepperItem.urls.pc,
-          tel: '不明',
-          pr: {
-            pr_long: ''
-          }
-        });
-      }
     });
-  });
+    if (!include && !addNameList.includes(hotpepperEntry.name)) {
+      include = false;
+      grunaviRest.push({
+        name: hotpepperEntry.name,
+        image_url: {
+          shop_image1: hotpepperEntry.photo.pc.l
+        },
+        address: hotpepperEntry.address,
+        url: hotpepperEntry.urls.pc,
+        url_mobile: hotpepperEntry.urls.pc,
+        tel: '不明',
+        pr: {
+          pr_long: ''
+        }
+      })
+    }
+  }
   return grunaviRest;
 };
