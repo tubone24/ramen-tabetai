@@ -11,13 +11,15 @@ export const mergeRest = (
   });
   for (const hotpepperEntry of hotpepperRest) {
     let include = false;
+    // bug
+    const grunaviRestLength = grunaviRest.length;
     grunaviRest.forEach((item, index) => {
       if (item.name === hotpepperEntry.name) {
         item.image_url.shop_image1 = hotpepperEntry.photo.pc.l;
         include = true;
       }
       if (
-        index === grunaviRest.length - 1 &&
+        index === grunaviRestLength - 1 &&
         !include &&
         !addNameList.includes(hotpepperEntry.name)
       ) {

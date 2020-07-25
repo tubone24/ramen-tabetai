@@ -2,7 +2,7 @@ export const getHotpepperRestaurant = (
   hotpepperToken: string,
   latitude: string,
   longitude: string
-) => {
+): HotpepperRest[] => {
   const getRestaurantOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
     method: 'get',
     contentType: 'application/json',
