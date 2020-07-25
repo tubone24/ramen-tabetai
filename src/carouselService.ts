@@ -90,16 +90,20 @@ export const createCarousel = (rest: GrunaviRest[], userId: string): Carousel[] 
           }
         },
         {
-          type: 'message',
+          type: 'uri',
           label: '電話したい',
-          text: item.tel
+          uri: `tel:${item.tel}`
         },
         {
           type: 'uri',
           label: 'ラーメン食べた！',
-          uri: encodeURI(`https://ramen-tabeteru.web.app/add/?userId=${userId}&shopId=${item.id}&shopName=${item.name}&lat=${item.latitude}&lon=${item.longitude}`),
+          uri: encodeURI(
+            `https://ramen-tabeteru.web.app/add/?userId=${userId}&shopId=${item.id}&shopName=${item.name}&lat=${item.latitude}&lon=${item.longitude}`
+          ),
           altUri: {
-            desktop: encodeURI(`https://ramen-tabeteru.web.app/add/?userId=${userId}&shopId=${item.id}&shopName=${item.name}&lat=${item.latitude}&lon=${item.longitude}`),
+            desktop: encodeURI(
+              `https://ramen-tabeteru.web.app/add/?userId=${userId}&shopId=${item.id}&shopName=${item.name}&lat=${item.latitude}&lon=${item.longitude}`
+            )
           }
         }
       ]

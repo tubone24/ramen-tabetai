@@ -8,7 +8,7 @@ export const mergeRest = (
   // ぐるなびAPIの結果の画像がしょぼいから画像をHotpepperAPIで置き換えて、かつぐるなびAPIの検索結果にないものを加える
   for (const hotpepperEntry of hotpepperRest) {
     let include = false;
-    grunaviRest.forEach((grunaviItem) => {
+    grunaviRest.forEach(grunaviItem => {
       if (grunaviItem.name === hotpepperEntry.name) {
         grunaviItem.image_url.shop_image1 = hotpepperEntry.photo.pc.l;
         include = true;
@@ -31,7 +31,7 @@ export const mergeRest = (
         pr: {
           pr_long: ''
         }
-      })
+      });
     }
   }
 
