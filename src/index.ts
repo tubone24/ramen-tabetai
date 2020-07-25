@@ -55,7 +55,7 @@ global.doPost = (e: any) => {
   }
   const replacedGrunaviRest = mergeRest(grunaviRest, hotpepperRest);
   const imageCarousel = createCarousel(replacedGrunaviRest);
-  sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, grunaviRest.length);
+  sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, replacedGrunaviRest.length);
   return ContentService.createTextOutput(JSON.stringify({ status: 'ok' })).setMimeType(
     ContentService.MimeType.JSON
   );
