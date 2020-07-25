@@ -25,8 +25,8 @@ export interface HotpepperRest {
   address: string;
   name: string;
   id: string;
-  lat: string;
-  lng: string;
+  lat: number;
+  lng: number;
   photo: {
     mobile: {
       l: string;
