@@ -90,3 +90,27 @@ export const sendLineReplyNoShopMessage = (lineBearer: string, replyToken: strin
 
   UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
 };
+
+export const getUserInfo = (lineBearer: string, userId: string): UserProfile => {
+  const userInfoOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+    method: 'get',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + lineBearer
+    }
+  };
+  return JSON.parse(
+    UrlFetchApp.fetch(
+      'https://api.line.me/v2/bot/profile/' + userId,
+      userInfoOptions
+    ).getContentText()
+  );
+};
+
+export interface UserProfile {
+  displayName: string;
+  userId: string;
+  language: string;
+  pictureUrl: string;
+  statusMessage: string;
+}

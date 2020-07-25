@@ -4054,7 +4054,7 @@ describe('createCarousel', () => {
         }
       }
     ];
-    const actual = createCarousel(mockRest, 'test');
+    const actual = createCarousel(mockRest, {userId: 'testuser', displayName: 'testtest', pictureUrl: 'https://example.com/photo.jpg', language: 'ja', statusMessage: 'aaa'});
     expect(actual[0].type).toEqual('template');
     expect(actual[0].altText).toEqual('ramen');
     expect(actual[0].template.type).toEqual('carousel');
@@ -4062,7 +4062,7 @@ describe('createCarousel', () => {
     expect(actual[0].template.columns[0].thumbnailImageUrl).toEqual('https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/no_image_square.jpg');
     expect(actual[0].template.columns[0].text).toEqual('Tel: 03-5985-0032\nAddress: 〒171-0022 東京都豊島区南池袋1-22-5 ニューナカノビ');
     expect(actual[0].template.columns[0].defaultAction).toEqual({'type':'uri','label':'中洲屋台ラーメン 一竜 ','uri':'http://mobile.gnavi.co.jp/shop/7382596/?ak=UKutMOVrMfs3qHtpT1euv06MXqPjNZyGW51PnE3qUOk%3D','altUri':{'desktop':'https://r.gnavi.co.jp/69hdb8uv0000/?ak=UKutMOVrMfs3qHtpT1euv06MXqPjNZyGW51PnE3qUOk%3D'}});
-    expect(actual[0].template.columns[0].actions).toEqual([{"type":"uri","label":"Webページへ","uri":"http://mobile.gnavi.co.jp/shop/7382596/?ak=UKutMOVrMfs3qHtpT1euv06MXqPjNZyGW51PnE3qUOk%3D","altUri":{"desktop":"https://r.gnavi.co.jp/69hdb8uv0000/?ak=UKutMOVrMfs3qHtpT1euv06MXqPjNZyGW51PnE3qUOk%3D"}},{"type":"uri","label":"電話したい","uri":"tel:03-5985-0032"}, {"type": "uri", uri: "https://ramen-tabeteru.web.app/add/?userId=test&shopId=7382596&shopName=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E4%B8%80%E7%AB%9C%20%E6%B1%A0%E8%A2%8B%E6%9D%B1%E5%8F%A3%E5%BA%97&lat=35.729306&lon=139.712505", "label": "ラーメン食べた！", "altUri": {"desktop": "https://ramen-tabeteru.web.app/add/?userId=test&shopId=7382596&shopName=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E4%B8%80%E7%AB%9C%20%E6%B1%A0%E8%A2%8B%E6%9D%B1%E5%8F%A3%E5%BA%97&lat=35.729306&lon=139.712505"}}]);
+    expect(actual[0].template.columns[0].actions).toEqual([{"type":"uri","label":"Webページへ","uri":"http://mobile.gnavi.co.jp/shop/7382596/?ak=UKutMOVrMfs3qHtpT1euv06MXqPjNZyGW51PnE3qUOk%3D","altUri":{"desktop":"https://r.gnavi.co.jp/69hdb8uv0000/?ak=UKutMOVrMfs3qHtpT1euv06MXqPjNZyGW51PnE3qUOk%3D"}},{"type":"uri","label":"電話したい","uri":"tel:03-5985-0032"}, {"type": "uri", uri: "https://ramen-tabeteru.web.app/add/?uid=testuser&un=testtest&up=https://example.com/photo.jpg&sid=7382596&sn=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E4%B8%80%E7%AB%9C%20%E6%B1%A0%E8%A2%8B%E6%9D%B1%E5%8F%A3%E5%BA%97&lat=35.729306&lon=139.712505", "label": "ラーメン食べた！", "altUri": {"desktop": "https://ramen-tabeteru.web.app/add/?uid=testuser&un=testtest&up=https://example.com/photo.jpg&sid=7382596&sn=%E4%B8%AD%E6%B4%B2%E5%B1%8B%E5%8F%B0%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%B3%20%E4%B8%80%E7%AB%9C%20%E6%B1%A0%E8%A2%8B%E6%9D%B1%E5%8F%A3%E5%BA%97&lat=35.729306&lon=139.712505"}}]);
     expect(actual.length).toEqual(6);
     expect(actual[0].template.columns.length).toEqual(10);
     expect(actual[1].template.columns.length).toEqual(10);
@@ -4148,7 +4148,7 @@ describe('createCarousel', () => {
           "pc_coupon": 0
         }
       },];
-    const actual = createCarousel(mockRest, 'test');
+    const actual = createCarousel(mockRest, {userId: 'testuser', displayName: 'testtest', pictureUrl: 'https://example.com/photo.jpg', language: 'ja', statusMessage: 'aaa'});
     expect(actual[0].type).toEqual('template');
     expect(actual[0].altText).toEqual('ramen');
     expect(actual[0].template.type).toEqual('carousel');
@@ -4611,7 +4611,7 @@ describe('createCarousel', () => {
         }
       }
     ]
-    const actual = createCarousel(mockRest, 'test');
+    const actual = createCarousel(mockRest, {userId: 'testuser', displayName: 'testtest', pictureUrl: 'https://example.com/photo.jpg', language: 'ja', statusMessage: 'aaa'});
     expect(actual[0].type).toEqual('template');
     expect(actual[0].altText).toEqual('ramen');
     expect(actual[0].template.type).toEqual('carousel');
@@ -4623,7 +4623,7 @@ describe('createCarousel', () => {
   });
   it('not found shops', () => {
     const mockRest = [];
-    const actual = createCarousel(mockRest, 'test');
+    const actual = createCarousel(mockRest, {userId: 'testuser', displayName: 'testtest', pictureUrl: 'https://example.com/photo.jpg', language: 'ja', statusMessage: 'aaa'});
     expect(actual).toEqual([]);
   });
 });

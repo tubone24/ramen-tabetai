@@ -4,8 +4,9 @@ import { getGrunaviRestaurant } from './grunaviService';
 import {
   sendLineReplyMessage,
   sendLineReplyRamen,
-  sendLineReplyNoShopMessage
-} from './sendLineService';
+  sendLineReplyNoShopMessage,
+  getUserInfo,
+} from './LineService';
 import { checkTelephoneNumber } from './checkTelephoneService';
 import { getHotpepperRestaurant } from './hotpepperGourmetService';
 import { mergeRest } from './mergeRest';
@@ -46,6 +47,7 @@ global.doPost = (e: any) => {
   const longitude = message.longitude;
   const address = message.address;
   const userId = events[0].source.userId;
+  const userInfo = getUserInfo(LINE_BEARER, userId);
   const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
   const hotpepperRest = getHotpepperRestaurant(HOTPEPPER_TOKEN, latitude, longitude);
   console.log(hotpepperRest);
@@ -56,7 +58,7 @@ global.doPost = (e: any) => {
     ).setMimeType(ContentService.MimeType.JSON);
   }
   const replacedGrunaviRest = mergeRest(grunaviRest, hotpepperRest);
-  const imageCarousel = createCarousel(replacedGrunaviRest, userId);
+  const imageCarousel = createCarousel(replacedGrunaviRest, userInfo);
   sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, replacedGrunaviRest.length);
   return ContentService.createTextOutput(JSON.stringify({ status: 'ok' })).setMimeType(
     ContentService.MimeType.JSON
