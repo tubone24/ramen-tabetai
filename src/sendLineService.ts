@@ -45,11 +45,11 @@ export const sendLineReplyMessage = (lineBearer: string, replyToken: string): vo
     quickReply: {
       items: [
         {
-          "type": "action",
-          "action": {
-            "type": "location",
-            "label": "位置情報を送る"
-          },
+          type: 'action',
+          action: {
+            type: 'location',
+            label: '位置情報を送る'
+          }
         }
       ]
     }

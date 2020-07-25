@@ -1,7 +1,7 @@
 export const getHotpepperRestaurant = (
   hotpepperToken: string,
   latitude: string,
-  longitude: string,
+  longitude: string
 ) => {
   const getRestaurantOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
     method: 'get',
@@ -28,16 +28,15 @@ export interface HotpepperRest {
     mobile: {
       l: string;
       s: string;
-    }
+    };
     pc: {
       l: string;
       m: string;
       s: string;
-    }
-  }
+    };
+  };
   urls: {
     pc: string;
-  }
+  };
   catch: string;
 }
-

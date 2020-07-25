@@ -4,11 +4,13 @@ export class GetScriptPropertiesService {
     const grunaviToken: string = PropertiesService.getScriptProperties().getProperty(
       'GRUNAVI_TOKEN'
     );
-    const hotpepperToken: string = PropertiesService.getScriptProperties().getProperty('HOTPEPPER_TOKEN');
+    const hotpepperToken: string = PropertiesService.getScriptProperties().getProperty(
+      'HOTPEPPER_TOKEN'
+    );
     return {
       lineBearer: lineBearer,
       grunaviToken: grunaviToken,
-      hotpepperToken: hotpepperToken,
+      hotpepperToken: hotpepperToken
     };
   }
 }

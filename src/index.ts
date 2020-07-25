@@ -6,9 +6,9 @@ import {
   sendLineReplyRamen,
   sendLineReplyNoShopMessage
 } from './sendLineService';
-import { checkTelephoneNumber } from "./checkTelephoneService";
-import { getHotpepperRestaurant } from "./hotpepperGourmetService";
-import {mergeRest} from "./mergeRest";
+import { checkTelephoneNumber } from './checkTelephoneService';
+import { getHotpepperRestaurant } from './hotpepperGourmetService';
+import { mergeRest } from './mergeRest';
 
 declare var global: any;
 
