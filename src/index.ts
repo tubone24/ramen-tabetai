@@ -47,6 +47,7 @@ global.doPost = (e: any) => {
   const address = message.address;
   const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
   const hotpepperRest = getHotpepperRestaurant(HOTPEPPER_TOKEN, latitude, longitude);
+  console.log(hotpepperRest)
   if (grunaviRest.length === 0) {
     sendLineReplyNoShopMessage(LINE_BEARER, replyToken);
     return ContentService.createTextOutput(
