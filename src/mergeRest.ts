@@ -9,17 +9,16 @@ export const mergeRest = (
   const addNameList = grunaviRest.map(item => {
     return item.name;
   });
+  const grunaviListNum = grunaviRest.length;
   for (const hotpepperEntry of hotpepperRest) {
     let include = false;
-    // bug
-    const grunaviRestLength = grunaviRest.length;
     grunaviRest.forEach((item, index) => {
       if (item.name === hotpepperEntry.name) {
         item.image_url.shop_image1 = hotpepperEntry.photo.pc.l;
         include = true;
       }
       if (
-        index === grunaviRestLength - 1 &&
+        index === grunaviListNum - 1 &&
         !include &&
         !addNameList.includes(hotpepperEntry.name)
       ) {
