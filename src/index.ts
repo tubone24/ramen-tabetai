@@ -7,10 +7,13 @@ import {
   sendLineReplyNoShopMessage,
   getUserInfo,
   sendLineReplyLifelogLink,
+  sendLineReplyChangeUserName,
+  sendLineReplyChangeSecondName,
 } from './LineService';
 import { checkTelephoneNumber } from './checkTelephoneService';
 import { getHotpepperRestaurant } from './hotpepperGourmetService';
 import { mergeRest } from './mergeRest';
+import { changeUserName, changeSecondName } from "./updateUser";
 
 declare var global: any;
 
@@ -19,6 +22,9 @@ global.doPost = (e: any) => {
   const LINE_BEARER = config.lineBearer;
   const GRUNAVI_TOKEN = config.grunaviToken;
   const HOTPEPPER_TOKEN = config.hotpepperToken;
+  const FIRESTORE_EMAIL = config.fireStoreEmail;
+  const FIRESTORE_KEY = config.fireStoreKey;
+  const FIRESTPRE_PROJECT_ID = config.fireStoreProjectId;
   const params = JSON.parse(e.postData.getDataAsString());
   console.log(JSON.stringify(params));
   const events = params.events;
@@ -37,6 +43,22 @@ global.doPost = (e: any) => {
       if (message.text === 'ライフログがみたい') {
         sendLineReplyLifelogLink(LINE_BEARER, replyToken, userId);
         return ContentService.createTextOutput(JSON.stringify({ status: 'view lifelog' })).setMimeType(
+          ContentService.MimeType.JSON
+        );
+      }
+      if (message.text.match(/ユーザ名:/)) {
+        const userName = message.text.replace('ユーザ名:', '');
+        changeUserName(userId, userName, FIRESTORE_EMAIL, FIRESTORE_KEY, FIRESTPRE_PROJECT_ID);
+        sendLineReplyChangeUserName(LINE_BEARER, replyToken, userName)
+        return ContentService.createTextOutput(JSON.stringify({ status: 'change username' })).setMimeType(
+          ContentService.MimeType.JSON
+        );
+      }
+      if (message.text.match(/ふたつな:/)) {
+        const secondName = message.text.replace('ふたつな:', '');
+        changeSecondName(userId, secondName, FIRESTORE_EMAIL, FIRESTORE_KEY, FIRESTPRE_PROJECT_ID);
+        sendLineReplyChangeSecondName(LINE_BEARER, replyToken, secondName)
+        return ContentService.createTextOutput(JSON.stringify({ status: 'change secondName' })).setMimeType(
           ContentService.MimeType.JSON
         );
       }
