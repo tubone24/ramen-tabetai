@@ -8,7 +8,8 @@ import {
   getUserInfo,
   sendLineReplyLifelogLink,
   sendLineReplyChangeUserName,
-  sendLineReplyChangeSecondName
+  sendLineReplyChangeSecondName,
+  sendLineReplyMenu
 } from './LineService';
 import { checkTelephoneNumber } from './checkTelephoneService';
 import { getHotpepperRestaurant } from './hotpepperGourmetService';
@@ -47,7 +48,7 @@ global.doPost = (e: any) => {
         ).setMimeType(ContentService.MimeType.JSON);
       }
       if (message.text === 'メニュー') {
-        sendLineReplyLifelogLink(LINE_BEARER, replyToken, userId);
+        sendLineReplyMenu(LINE_BEARER, replyToken);
         return ContentService.createTextOutput(
           JSON.stringify({ status: 'view lifelog' })
         ).setMimeType(ContentService.MimeType.JSON);
