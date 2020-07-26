@@ -1,5 +1,5 @@
 import { GrunaviRest } from './grunaviService';
-import { UserProfile } from "./LineService";
+import { UserProfile } from './LineService';
 
 export const createImageCarousel = (rest: GrunaviRest[]): ImageCarousel[] => {
   const templates = [];

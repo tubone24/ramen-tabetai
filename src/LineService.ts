@@ -41,27 +41,27 @@ export const sendLineReplyRamen = (
 export const sendLineReplyLifelogLink = (
   lineBearer: string,
   replyToken: string,
-  userId: string,
+  userId: string
 ): void => {
   const template = {
     type: 'template',
     altText: 'lifelog',
     template: {
       type: 'confirm',
-      "text": "ライフログを開く？",
-      "actions": [
+      text: 'ライフログを開く？',
+      actions: [
         {
-          "type":"uri",
-          "label":"開く",
-          "uri": `https://ramen-tabeteru.web.app/view/?uid=${userId}`,
-          "altUri": {
-            "desktop" : `https://ramen-tabeteru.web.app/view/?uid=${userId}`
+          type: 'uri',
+          label: '開く',
+          uri: `https://ramen-tabeteru.web.app/view/?uid=${userId}`,
+          altUri: {
+            desktop: `https://ramen-tabeteru.web.app/view/?uid=${userId}`
           }
         },
         {
-          "type": "message",
-          "label": "いいえ",
-          "text": "いいえ"
+          type: 'message',
+          label: 'いいえ',
+          text: 'いいえ'
         }
       ]
     }
@@ -97,11 +97,12 @@ export const sendLineReplyMessage = (lineBearer: string, replyToken: string): vo
         },
         {
           type: 'action',
-          imageUrl: 'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/heart_blur.png',
+          imageUrl:
+            'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/heart_blur.png',
           action: {
-            "type":"message",
-            "label":"ライフログを見る",
-            "text":"ライフログがみたい"
+            type: 'message',
+            label: 'ライフログを見る',
+            text: 'ライフログがみたい'
           }
         }
       ]
@@ -144,7 +145,11 @@ export const sendLineReplyNoShopMessage = (lineBearer: string, replyToken: strin
   UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
 };
 
-export const sendLineReplyChangeUserName = (lineBearer: string, replyToken: string, userName: string): void => {
+export const sendLineReplyChangeUserName = (
+  lineBearer: string,
+  replyToken: string,
+  userName: string
+): void => {
   const msg = {
     type: 'text',
     text: `ユーザ名を${userName}に変更しました`
@@ -165,7 +170,11 @@ export const sendLineReplyChangeUserName = (lineBearer: string, replyToken: stri
   UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
 };
 
-export const sendLineReplyChangeSecondName = (lineBearer: string, replyToken: string, secondName: string): void => {
+export const sendLineReplyChangeSecondName = (
+  lineBearer: string,
+  replyToken: string,
+  secondName: string
+): void => {
   const msg = {
     type: 'text',
     text: `ふたつなを${secondName}に変更しました`

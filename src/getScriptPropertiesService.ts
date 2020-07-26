@@ -15,14 +15,14 @@ export class GetScriptPropertiesService {
     );
     const fireStoreProjectId: string = PropertiesService.getScriptProperties().getProperty(
       'FIRESTORE_PROJECT_ID'
-    )
+    );
     return {
       lineBearer: lineBearer,
       grunaviToken: grunaviToken,
       hotpepperToken: hotpepperToken,
       fireStoreEmail: fireStoreEmail,
       fireStoreKey: fireStoreKey,
-      fireStoreProjectId: fireStoreProjectId,
+      fireStoreProjectId: fireStoreProjectId
     };
   }
 }

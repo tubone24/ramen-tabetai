@@ -8,12 +8,12 @@ import {
   getUserInfo,
   sendLineReplyLifelogLink,
   sendLineReplyChangeUserName,
-  sendLineReplyChangeSecondName,
+  sendLineReplyChangeSecondName
 } from './LineService';
 import { checkTelephoneNumber } from './checkTelephoneService';
 import { getHotpepperRestaurant } from './hotpepperGourmetService';
 import { mergeRest } from './mergeRest';
-import { changeUserName, changeSecondName } from "./updateUser";
+import { changeUserName, changeSecondName } from './updateUser';
 
 declare var global: any;
 
@@ -42,25 +42,25 @@ global.doPost = (e: any) => {
     if (message.type === 'text') {
       if (message.text === 'ライフログがみたい') {
         sendLineReplyLifelogLink(LINE_BEARER, replyToken, userId);
-        return ContentService.createTextOutput(JSON.stringify({ status: 'view lifelog' })).setMimeType(
-          ContentService.MimeType.JSON
-        );
+        return ContentService.createTextOutput(
+          JSON.stringify({ status: 'view lifelog' })
+        ).setMimeType(ContentService.MimeType.JSON);
       }
       if (message.text.match(/ユーザ名:/)) {
         const userName = message.text.replace('ユーザ名:', '');
         changeUserName(userId, userName, FIRESTORE_EMAIL, FIRESTORE_KEY, FIRESTPRE_PROJECT_ID);
-        sendLineReplyChangeUserName(LINE_BEARER, replyToken, userName)
-        return ContentService.createTextOutput(JSON.stringify({ status: 'change username' })).setMimeType(
-          ContentService.MimeType.JSON
-        );
+        sendLineReplyChangeUserName(LINE_BEARER, replyToken, userName);
+        return ContentService.createTextOutput(
+          JSON.stringify({ status: 'change username' })
+        ).setMimeType(ContentService.MimeType.JSON);
       }
       if (message.text.match(/ふたつな:/)) {
         const secondName = message.text.replace('ふたつな:', '');
         changeSecondName(userId, secondName, FIRESTORE_EMAIL, FIRESTORE_KEY, FIRESTPRE_PROJECT_ID);
-        sendLineReplyChangeSecondName(LINE_BEARER, replyToken, secondName)
-        return ContentService.createTextOutput(JSON.stringify({ status: 'change secondName' })).setMimeType(
-          ContentService.MimeType.JSON
-        );
+        sendLineReplyChangeSecondName(LINE_BEARER, replyToken, secondName);
+        return ContentService.createTextOutput(
+          JSON.stringify({ status: 'change secondName' })
+        ).setMimeType(ContentService.MimeType.JSON);
       }
       if (checkTelephoneNumber(message.text)) {
         return ContentService.createTextOutput(JSON.stringify({ status: 'telephone' })).setMimeType(
