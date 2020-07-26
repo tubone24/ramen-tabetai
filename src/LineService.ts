@@ -124,6 +124,58 @@ export const sendLineReplyMessage = (lineBearer: string, replyToken: string): vo
   UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
 };
 
+export const sendLineReplyMenu = (lineBearer: string, replyToken: string): void => {
+  const msg = {
+    type: 'text',
+    text: '位置情報を送って近くのラーメン屋を見つけよう！',
+    quickReply: {
+      items: [
+        {
+          type: 'action',
+          action: {
+            type: 'location',
+            label: '位置情報を送る'
+          }
+        },
+        {
+          type: 'action',
+          imageUrl:
+            'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/heart_blur.png',
+          action: {
+            type: 'message',
+            label: 'ライフログを見る',
+            text: 'ライフログがみたい'
+          }
+        },
+        {
+          type: 'action',
+          imageUrl:
+            'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/war_dog_tag.png',
+          action: {
+            type: 'uri',
+            label: 'ユーザ名を変える',
+            uri: 'https://line.me/R/oaMessage/@097iikzx/?%E3%83%A6%E3%83%BC%E3%82%B6%E5%90%8D%3A%E6%96%B0%E3%81%97%E3%81%84%E5%90%8D%E5%89%8D%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6%E3%81%AD',
+          }
+        },
+      ]
+    }
+  };
+  const respData = {
+    replyToken: replyToken,
+    messages: [msg]
+  };
+  const userRespOptions: GoogleAppsScript.URL_Fetch.URLFetchRequestOptions = {
+    method: 'post',
+    contentType: 'application/json',
+    headers: {
+      Authorization: 'Bearer ' + lineBearer
+    },
+    payload: JSON.stringify(respData)
+  };
+
+  UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', userRespOptions);
+};
+
 export const sendLineReplyNoShopMessage = (lineBearer: string, replyToken: string): void => {
   const msg = {
     type: 'text',

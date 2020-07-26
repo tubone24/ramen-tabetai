@@ -46,6 +46,12 @@ global.doPost = (e: any) => {
           JSON.stringify({ status: 'view lifelog' })
         ).setMimeType(ContentService.MimeType.JSON);
       }
+      if (message.text === 'メニュー') {
+        sendLineReplyLifelogLink(LINE_BEARER, replyToken, userId);
+        return ContentService.createTextOutput(
+          JSON.stringify({ status: 'view lifelog' })
+        ).setMimeType(ContentService.MimeType.JSON);
+      }
       if (message.text.match(/ユーザ名:/)) {
         const userName = message.text.replace('ユーザ名:', '');
         changeUserName(userId, userName, FIRESTORE_EMAIL, FIRESTORE_KEY, FIRESTPRE_PROJECT_ID);
