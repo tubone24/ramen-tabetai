@@ -84,10 +84,12 @@ global.doPost = (e: any) => {
   const longitude = message.longitude;
   const address = message.address;
   const userInfo = getUserInfo(LINE_BEARER, userId);
-  const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
+  // const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
+  // ぐるなびAPI廃止のためAPI叩かない
+  const grunaviRest = [];
   const hotpepperRest = getHotpepperRestaurant(HOTPEPPER_TOKEN, latitude, longitude);
   console.log(hotpepperRest);
-  if (grunaviRest.length === 0) {
+  if (grunaviRest.length === 0 && hotpepperRest.length === 0) {
     sendLineReplyNoShopMessage(LINE_BEARER, replyToken);
     return ContentService.createTextOutput(
       JSON.stringify({ status: 'not found shop' })

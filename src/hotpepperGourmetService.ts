@@ -42,4 +42,9 @@ export interface HotpepperRest {
     pc: string;
   };
   catch: string;
+  genre: {
+    catch: string;
+    code: string;
+    name: string;
+  };
 }

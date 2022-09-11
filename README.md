@@ -56,7 +56,11 @@ Check this link.
 
 <https://developers.line.biz/ja/docs/messaging-api/building-bot/>
 
-### Create GruNavi API
+### ~~Create GruNavi API~~
+
+Free use of Gurunavi API is no longer available.
+
+Use hotpepper's API instead.
 
 <https://ssl.gnavi.co.jp/api/regist/?p=input>
 

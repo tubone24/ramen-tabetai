@@ -130,22 +130,25 @@ export const sendLineReplyMenu = (lineBearer: string, replyToken: string): void 
     altText: 'lifelog',
     template: {
       type: 'buttons',
-      thumbnailImageUrl: 'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/war_dog_tag.png',
+      thumbnailImageUrl:
+        'https://raw.githubusercontent.com/tubone24/ramen-tabetai/master/src/assets/war_dog_tag.png',
       title: 'メニュー',
       text: 'ユーザ名やふたつなを変えます',
       actions: [
         {
           type: 'uri',
           label: 'ユーザ名変更',
-          uri: 'https://line.me/R/oaMessage/@097iikzx/?%E3%83%A6%E3%83%BC%E3%82%B6%E5%90%8D%3A%E6%96%B0%E3%81%97%E3%81%84%E5%90%8D%E5%89%8D%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6%E3%81%AD'
+          uri:
+            'https://line.me/R/oaMessage/@097iikzx/?%E3%83%A6%E3%83%BC%E3%82%B6%E5%90%8D%3A%E6%96%B0%E3%81%97%E3%81%84%E5%90%8D%E5%89%8D%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6%E3%81%AD'
         },
         {
           type: 'uri',
           label: 'ふたつな変更',
-          uri: 'https://line.me/R/oaMessage/@097iikzx/?%E3%81%B5%E3%81%9F%E3%81%A4%E3%81%AA%3A%E6%96%B0%E3%81%97%E3%81%84%E3%81%B5%E3%81%9F%E3%81%A4%E3%81%AA%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6%E3%81%AD'
-        },
+          uri:
+            'https://line.me/R/oaMessage/@097iikzx/?%E3%81%B5%E3%81%9F%E3%81%A4%E3%81%AA%3A%E6%96%B0%E3%81%97%E3%81%84%E3%81%B5%E3%81%9F%E3%81%A4%E3%81%AA%E3%82%92%E5%85%A5%E3%82%8C%E3%81%A6%E3%81%AD'
+        }
       ]
-    },
+    }
   };
   const respData = {
     replyToken: replyToken,
