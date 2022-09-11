@@ -29,9 +29,14 @@ export interface YelpRest {
   id: string;
   alias: string;
   rating: number;
-  latitude: string;
-  longitude: string;
+  coordinates: {
+    latitude: string;
+    longitude: string;
+  };
   name: string;
   url: string;
   phone: string;
+  location: {
+    display_address: string[];
+  };
 }

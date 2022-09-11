@@ -7,13 +7,13 @@ export const convertRest = (yelpRests: YelpRest[]): GrunaviRest[] => {
     image_url: {
       shop_image1: yelpRest.image_url
     },
-    latitude: yelpRest.latitude,
-    longitude: yelpRest.longitude,
+    latitude: yelpRest.coordinates.latitude,
+    longitude: yelpRest.coordinates.longitude,
     name: yelpRest.alias,
     url_mobile: yelpRest.url,
     url: yelpRest.url,
     tel: yelpRest.phone,
-    address: '',
+    address: yelpRest.location.display_address.join(' '),
     pr: {
       pr_long: ''
     }
