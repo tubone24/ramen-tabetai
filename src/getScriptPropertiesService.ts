@@ -16,13 +16,15 @@ export class GetScriptPropertiesService {
     const fireStoreProjectId: string = PropertiesService.getScriptProperties().getProperty(
       'FIRESTORE_PROJECT_ID'
     );
+    const yelpToken: string = PropertiesService.getScriptProperties().getProperty('YELP_TOKEN');
     return {
       lineBearer: lineBearer,
       grunaviToken: grunaviToken,
       hotpepperToken: hotpepperToken,
       fireStoreEmail: fireStoreEmail,
       fireStoreKey: fireStoreKey,
-      fireStoreProjectId: fireStoreProjectId
+      fireStoreProjectId: fireStoreProjectId,
+      yelpToken: yelpToken
     };
   }
 }
@@ -34,4 +36,5 @@ export interface Property {
   fireStoreEmail: string;
   fireStoreKey: string;
   fireStoreProjectId: string;
+  yelpToken: string;
 }

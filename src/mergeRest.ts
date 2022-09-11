@@ -29,7 +29,7 @@ export const mergeRest = (
         url_mobile: hotpepperEntry.urls.pc,
         tel: '不明',
         pr: {
-          pr_long: hotpepperEntry.genre.catch
+          pr_long: ''
         }
       });
     }

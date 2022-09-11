@@ -15,17 +15,18 @@ import { checkTelephoneNumber } from './checkTelephoneService';
 import { getHotpepperRestaurant } from './hotpepperGourmetService';
 import { mergeRest } from './mergeRest';
 import { changeUserName, changeSecondName } from './updateUser';
+import { getYelpRestaurant } from './yelpService';
+import { convertRest } from './convertRest';
 
 declare var global: any;
 
 global.doPost = (e: any) => {
   const config: Property = GetScriptPropertiesService.getProperties();
   const LINE_BEARER = config.lineBearer;
-  const GRUNAVI_TOKEN = config.grunaviToken;
-  const HOTPEPPER_TOKEN = config.hotpepperToken;
   const FIRESTORE_EMAIL = config.fireStoreEmail;
   const FIRESTORE_KEY = config.fireStoreKey;
   const FIRESTPRE_PROJECT_ID = config.fireStoreProjectId;
+  const YELP_TOKEN = config.yelpToken;
   const params = JSON.parse(e.postData.getDataAsString());
   console.log(JSON.stringify(params));
   const events = params.events;
@@ -84,20 +85,24 @@ global.doPost = (e: any) => {
   const longitude = message.longitude;
   const address = message.address;
   const userInfo = getUserInfo(LINE_BEARER, userId);
-  // const grunaviRest = getGrunaviRestaurant(GRUNAVI_TOKEN, latitude, longitude);
-  // ぐるなびAPI廃止のためAPI叩かない
-  const grunaviRest = [];
-  const hotpepperRest = getHotpepperRestaurant(HOTPEPPER_TOKEN, latitude, longitude);
-  console.log(hotpepperRest);
-  if (grunaviRest.length === 0 && hotpepperRest.length === 0) {
+  const yelpRest = getYelpRestaurant(YELP_TOKEN, latitude, longitude);
+  if (yelpRest.length === 0) {
     sendLineReplyNoShopMessage(LINE_BEARER, replyToken);
     return ContentService.createTextOutput(
       JSON.stringify({ status: 'not found shop' })
     ).setMimeType(ContentService.MimeType.JSON);
   }
-  const replacedGrunaviRest = mergeRest(grunaviRest, hotpepperRest);
+  const replacedGrunaviRest = convertRest(yelpRest);
+  console.log('replacedGrunaviRest');
+  console.log(replacedGrunaviRest);
   const imageCarousel = createCarousel(replacedGrunaviRest, userInfo);
   sendLineReplyRamen(LINE_BEARER, replyToken, imageCarousel, address, replacedGrunaviRest.length);
+  return ContentService.createTextOutput(JSON.stringify({ status: 'ok' })).setMimeType(
+    ContentService.MimeType.JSON
+  );
+};
+
+global.doGet = (e: any) => {
   return ContentService.createTextOutput(JSON.stringify({ status: 'ok' })).setMimeType(
     ContentService.MimeType.JSON
   );
